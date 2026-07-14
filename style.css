@@ -230,3 +230,20 @@ nav a{
 }
 
 }
+
+.tool-btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:10px 20px;
+    background:#00c6ff;
+    color:#001018;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.tool-btn:hover{
+    background:#ffffff;
+    transform:scale(1.05);
+}
