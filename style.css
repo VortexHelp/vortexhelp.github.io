@@ -1,0 +1,149 @@
+/* ===========================
+   VortexHelp - Premium Styles
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#0b1120;
+    color:#ffffff;
+    line-height:1.6;
+}
+
+/* ===========================
+   Header
+=========================== */
+
+header{
+    background:#111827;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 50px;
+    border-bottom:1px solid #243244;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:800;
+    color:#00c6ff;
+    letter-spacing:0.5px;
+}
+
+/* Mobile Menu Icon */
+
+.menu-toggle{
+    display:none;
+    font-size:30px;
+    color:#ffffff;
+    cursor:pointer;
+}
+
+/* Navigation */
+
+nav{
+    display:flex;
+    align-items:center;
+}
+
+nav a{
+    color:#ffffff;
+    text-decoration:none;
+    margin-left:22px;
+    font-size:15px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#00c6ff;
+}
+
+/* ===========================
+   Hero Section
+=========================== */
+
+.hero{
+    text-align:center;
+    padding:100px 20px 70px;
+}
+
+.hero h1{
+    font-size:46px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    max-width:700px;
+    margin:auto;
+    color:#b8c1d1;
+    font-size:18px;
+    line-height:1.8;
+}
+
+/* ===========================
+   Search Box
+=========================== */
+
+.search-box{
+    margin:35px auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    max-width:600px;
+}
+
+.search-box input{
+    width:80%;
+    padding:15px;
+    border:none;
+    outline:none;
+    font-size:16px;
+    border-radius:8px 0 0 8px;
+}
+
+.search-box button{
+    padding:15px 25px;
+    border:none;
+    background:#00c6ff;
+    color:#001018;
+    font-weight:bold;
+    cursor:pointer;
+    border-radius:0 8px 8px 0;
+    transition:.3s;
+}
+
+.search-box button:hover{
+    background:#ffffff;
+}
+
+/* ===========================
+   Main Button
+=========================== */
+
+.btn{
+    display:inline-block;
+    margin-top:20px;
+    background:#2563eb;
+    color:#ffffff;
+    text-decoration:none;
+    padding:14px 30px;
+    border-radius:10px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#1d4ed8;
+    transform:translateY(-3px);
+}
+
+/* ===== Continue in Part 2 ===== */
