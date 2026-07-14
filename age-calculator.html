@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Age Calculator - VortexHelp</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">VortexHelp</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="#">Tools</a>
+</nav>
+
+</header>
+
+
+<section class="hero">
+
+<h1>Age Calculator</h1>
+
+<p>
+Calculate your exact age in years, months and days.
+</p>
+
+
+<div class="calculator-box">
+
+<label>Date of Birth</label>
+
+<input type="date" id="birthDate">
+
+
+<button onclick="calculateAge()">
+Calculate Age
+</button>
+
+
+<h3 id="result"></h3>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>© 2026 VortexHelp. All Rights Reserved.</p>
+
+</footer>
+
+
+<script>
+
+function calculateAge(){
+
+let birthDate = document.getElementById("birthDate").value;
+
+if(!birthDate){
+    document.getElementById("result").innerHTML =
+    "Please select your date of birth";
+    return;
+}
+
+
+let birth = new Date(birthDate);
+let today = new Date();
+
+
+let age = today.getFullYear() - birth.getFullYear();
+
+let month = today.getMonth() - birth.getMonth();
+
+
+if(month < 0 || 
+(month === 0 && today.getDate() < birth.getDate())){
+    age--;
+}
+
+
+document.getElementById("result").innerHTML =
+"You are " + age + " years old.";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
