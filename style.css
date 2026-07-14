@@ -147,6 +147,7 @@ nav a:hover{
 }
 
 /* ===== Continue in Part 2 ===== */
+
 /* ===========================
    Tools Section
 =========================== */
@@ -209,4 +210,134 @@ nav a:hover{
     max-width:500px;
     margin:40px auto;
     background:#111827;
-    padding:
+    padding:30px;
+    border-radius:18px;
+    border:1px solid #263244;
+}
+
+.calculator-box input{
+    width:100%;
+    padding:15px;
+    font-size:17px;
+    border:none;
+    outline:none;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+#result{
+    margin-top:20px;
+    color:#00c6ff;
+}
+
+
+/* ===========================
+   Footer
+=========================== */
+
+footer{
+    background:#111827;
+    text-align:center;
+    padding:35px;
+    margin-top:40px;
+    border-top:1px solid #263244;
+    color:#94a3b8;
+}
+
+footer h3{
+    color:#00c6ff;
+    margin-bottom:10px;
+}
+
+footer a{
+    color:#ffffff;
+    text-decoration:none;
+    margin:0 10px;
+    transition:.3s;
+}
+
+footer a:hover{
+    color:#00c6ff;
+}
+
+
+/* ===========================
+   Mobile Responsive
+=========================== */
+
+@media(max-width:768px){
+
+header{
+    padding:20px;
+    flex-wrap:wrap;
+}
+
+.menu-toggle{
+    display:block;
+}
+
+nav{
+    display:none;
+    width:100%;
+    flex-direction:column;
+    text-align:center;
+    margin-top:15px;
+}
+
+nav.active{
+    display:flex;
+}
+
+nav a{
+    margin:12px 0;
+}
+
+.hero{
+    padding:70px 20px;
+}
+
+.hero h1{
+    font-size:32px;
+}
+
+.hero p{
+    font-size:16px;
+}
+
+.search-box{
+    flex-direction:column;
+}
+
+.search-box input,
+.search-box button{
+    width:100%;
+    border-radius:8px;
+    margin-bottom:10px;
+}
+
+.tools{
+    padding:25px;
+}
+
+.card{
+    padding:25px;
+}
+
+}
+
+
+/* ===========================
+   Smooth Animation
+=========================== */
+
+html{
+    scroll-behavior:smooth;
+}
+
+.card,
+.btn,
+.tool-btn,
+nav a,
+.search-box button{
+    transition:0.3s ease;
+}
