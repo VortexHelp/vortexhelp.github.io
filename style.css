@@ -7,6 +7,9 @@
     padding:0;
     box-sizing:border-box;
     font-family:Arial, Helvetica, sans-serif;
+}
+
+html{
     scroll-behavior:smooth;
 }
 
@@ -21,7 +24,8 @@ body{
 =========================== */
 
 header{
-    background:#111827;
+    background:rgba(17,24,39,0.95);
+    backdrop-filter:blur(12px);
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -36,19 +40,33 @@ header{
     font-size:30px;
     font-weight:800;
     color:#00c6ff;
-    letter-spacing:0.5px;
+    letter-spacing:.5px;
+    user-select:none;
 }
 
-/* Mobile Menu Icon */
+.logo:hover{
+    color:#38bdf8;
+}
+
+/* ===========================
+   Mobile Menu
+=========================== */
 
 .menu-toggle{
     display:none;
-    font-size:30px;
-    color:#ffffff;
+    font-size:32px;
     cursor:pointer;
+    color:#ffffff;
+    transition:.3s;
 }
 
-/* Navigation */
+.menu-toggle:hover{
+    color:#00c6ff;
+}
+
+/* ===========================
+   Navigation
+=========================== */
 
 nav{
     display:flex;
@@ -60,6 +78,8 @@ nav a{
     text-decoration:none;
     margin-left:22px;
     font-size:15px;
+    font-weight:500;
+    position:relative;
     transition:.3s;
 }
 
@@ -67,96 +87,156 @@ nav a:hover{
     color:#00c6ff;
 }
 
+nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-6px;
+    width:0%;
+    height:2px;
+    background:#00c6ff;
+    transition:.3s;
+}
+
+nav a:hover::after{
+    width:100%;
+}
 /* ===========================
    Hero Section
 =========================== */
 
 .hero{
     text-align:center;
-    padding:100px 20px 70px;
+    padding:110px 20px 80px;
+    background:
+    radial-gradient(circle at top,#12345f 0%,#0b1120 60%);
 }
 
 .hero h1{
-    font-size:46px;
-    margin-bottom:15px;
+    font-size:48px;
+    font-weight:800;
+    margin-bottom:18px;
+    animation:fadeUp .8s ease;
 }
 
 .hero p{
-    max-width:700px;
+    max-width:720px;
     margin:auto;
     color:#b8c1d1;
     font-size:18px;
     line-height:1.8;
+    animation:fadeUp 1s ease;
 }
+
 
 /* ===========================
    Search Box
 =========================== */
 
 .search-box{
-    margin:35px auto;
+    max-width:600px;
+    margin:40px auto;
     display:flex;
     justify-content:center;
     align-items:center;
-    max-width:600px;
 }
 
 .search-box input{
+
     width:80%;
-    padding:15px;
-    border:none;
+    padding:16px;
+    background:#1f2937;
+    color:#ffffff;
+    border:1px solid #374151;
+    border-right:none;
+    border-radius:10px 0 0 10px;
     outline:none;
     font-size:16px;
-    border-radius:8px 0 0 8px;
+
+}
+
+.search-box input::placeholder{
+
+    color:#9ca3af;
+
 }
 
 .search-box button{
-    padding:15px 25px;
-    border:none;
+
+    padding:16px 25px;
     background:#00c6ff;
     color:#001018;
-    font-weight:bold;
+    border:none;
     cursor:pointer;
-    border-radius:0 8px 8px 0;
+    font-weight:bold;
+    border-radius:0 10px 10px 0;
     transition:.3s;
+
 }
 
 .search-box button:hover{
+
     background:#ffffff;
+
 }
+
 
 /* ===========================
    Main Button
 =========================== */
 
 .btn{
+
     display:inline-block;
     margin-top:20px;
+    padding:15px 34px;
     background:#2563eb;
     color:#ffffff;
     text-decoration:none;
-    padding:14px 30px;
     border-radius:10px;
     font-weight:bold;
     transition:.3s;
+
 }
 
 .btn:hover{
+
     background:#1d4ed8;
-    transform:translateY(-3px);
+    transform:translateY(-4px);
+
 }
 
-/* ===== Continue in Part 2 ===== */
 
+/* ===========================
+   Animations
+=========================== */
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+transform:translateY(30px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
 /* ===========================
    Tools Section
 =========================== */
 
 .tools{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:25px;
-    padding:50px;
+    padding:60px 50px;
 }
 
 .card{
@@ -165,33 +245,40 @@ nav a:hover{
     border-radius:18px;
     padding:30px;
     text-align:center;
-    transition:0.3s ease;
-    box-shadow:0 5px 20px rgba(0,0,0,0.25);
+    transition:.35s;
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
 }
 
 .card:hover{
-    transform:translateY(-8px);
+    transform:translateY(-10px);
     border-color:#00c6ff;
-    box-shadow:0 10px 25px rgba(0,198,255,0.25);
+    box-shadow:0 15px 35px rgba(0,198,255,.25);
 }
 
 .card h3{
     color:#00c6ff;
     margin-bottom:15px;
+    font-size:22px;
 }
 
 .card p{
     color:#b8c1d1;
-    margin-bottom:20px;
+    margin-bottom:22px;
+    font-size:15px;
+    line-height:1.7;
 }
+
+/* ===========================
+   Tool Button
+=========================== */
 
 .tool-btn{
     display:inline-block;
-    padding:10px 20px;
+    padding:11px 22px;
     background:#00c6ff;
     color:#001018;
     text-decoration:none;
-    border-radius:8px;
+    border-radius:10px;
     font-weight:bold;
     transition:.3s;
 }
@@ -201,35 +288,49 @@ nav a:hover{
     transform:scale(1.05);
 }
 
-
 /* ===========================
-   Calculator
+   Calculator Box
 =========================== */
 
 .calculator-box{
-    max-width:500px;
+    max-width:520px;
     margin:40px auto;
     background:#111827;
-    padding:30px;
-    border-radius:18px;
     border:1px solid #263244;
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
+}
+
+.calculator-box label{
+    display:block;
+    margin-bottom:10px;
+    color:#b8c1d1;
+    font-weight:bold;
 }
 
 .calculator-box input{
     width:100%;
     padding:15px;
-    font-size:17px;
-    border:none;
-    outline:none;
+    background:#1f2937;
+    color:#ffffff;
+    border:1px solid #374151;
     border-radius:10px;
+    outline:none;
+    font-size:16px;
     margin-bottom:20px;
+}
+
+.calculator-box input:focus{
+    border-color:#00c6ff;
 }
 
 #result{
     margin-top:20px;
     color:#00c6ff;
+    font-size:22px;
+    font-weight:bold;
 }
-
 
 /* ===========================
    Footer
@@ -237,10 +338,9 @@ nav a:hover{
 
 footer{
     background:#111827;
-    text-align:center;
-    padding:35px;
-    margin-top:40px;
     border-top:1px solid #263244;
+    text-align:center;
+    padding:40px 20px;
     color:#94a3b8;
 }
 
@@ -259,17 +359,19 @@ footer a{
 footer a:hover{
     color:#00c6ff;
 }
-
-
 /* ===========================
    Mobile Responsive
 =========================== */
 
-@media(max-width:768px){
+@media (max-width:768px){
 
 header{
-    padding:20px;
+    padding:18px 20px;
     flex-wrap:wrap;
+}
+
+.logo{
+    font-size:26px;
 }
 
 .menu-toggle{
@@ -280,8 +382,9 @@ nav{
     display:none;
     width:100%;
     flex-direction:column;
-    text-align:center;
-    margin-top:15px;
+    margin-top:18px;
+    background:#111827;
+    border-top:1px solid #263244;
 }
 
 nav.active{
@@ -289,15 +392,16 @@ nav.active{
 }
 
 nav a{
-    margin:12px 0;
+    margin:15px 0;
+    text-align:center;
 }
 
 .hero{
-    padding:70px 20px;
+    padding:80px 20px 60px;
 }
 
 .hero h1{
-    font-size:32px;
+    font-size:34px;
 }
 
 .hero p{
@@ -308,36 +412,96 @@ nav a{
     flex-direction:column;
 }
 
-.search-box input,
+.search-box input{
+    width:100%;
+    border-radius:10px;
+    border:1px solid #374151;
+    margin-bottom:10px;
+}
+
 .search-box button{
     width:100%;
-    border-radius:8px;
-    margin-bottom:10px;
+    border-radius:10px;
 }
 
 .tools{
     padding:25px;
+    grid-template-columns:1fr;
 }
 
 .card{
     padding:25px;
 }
 
+.calculator-box{
+    margin:30px 15px;
+    padding:25px;
 }
 
+footer{
+    padding:30px 15px;
+}
+
+footer a{
+    display:inline-block;
+    margin:8px;
+}
+
+}
 
 /* ===========================
-   Smooth Animation
+   Scrollbar
 =========================== */
 
-html{
-    scroll-behavior:smooth;
+::-webkit-scrollbar{
+    width:10px;
 }
 
+::-webkit-scrollbar-track{
+    background:#0b1120;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#00c6ff;
+    border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#38bdf8;
+}
+
+/* ===========================
+   Selection
+=========================== */
+
+::selection{
+    background:#00c6ff;
+    color:#001018;
+}
+
+/* ===========================
+   Focus
+=========================== */
+
+button:focus,
+input:focus,
+a:focus{
+    outline:2px solid #00c6ff;
+    outline-offset:2px;
+}
+
+/* ===========================
+   Smooth Transitions
+=========================== */
+
+body,
+header,
+nav,
 .card,
 .btn,
 .tool-btn,
-nav a,
-.search-box button{
-    transition:0.3s ease;
+.search-box input,
+.search-box button,
+footer{
+    transition:all .3s ease;
 }
