@@ -1,83 +1,144 @@
+/* ===========================
+   VortexHelp - Main Styles
+=========================== */
+
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
 body{
-background:#0d1117;
-color:#fff;
+    background:#0d1117;
+    color:#ffffff;
+    line-height:1.6;
 }
 
+/* Header */
+
 header{
-background:#161b22;
-padding:20px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+    background:#161b22;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 40px;
+    border-bottom:1px solid #30363d;
 }
 
 .logo{
-font-size:28px;
-font-weight:bold;
-color:#3b82f6;
+    font-size:28px;
+    font-weight:bold;
+    color:#3b82f6;
 }
 
 nav a{
-color:white;
-text-decoration:none;
-margin-left:20px;
+    color:#ffffff;
+    text-decoration:none;
+    margin-left:20px;
+    transition:0.3s;
 }
 
+nav a:hover{
+    color:#3b82f6;
+}
+
+/* Hero */
+
 .hero{
-text-align:center;
-padding:80px 20px;
+    text-align:center;
+    padding:90px 20px;
 }
 
 .hero h1{
-font-size:40px;
-margin-bottom:15px;
+    font-size:42px;
+    margin-bottom:15px;
 }
 
 .hero p{
-color:#c9d1d9;
-margin-bottom:30px;
+    color:#c9d1d9;
+    font-size:18px;
+    margin-bottom:30px;
 }
 
 .btn{
-display:inline-block;
-padding:14px 28px;
-background:#3b82f6;
-color:white;
-text-decoration:none;
-border-radius:8px;
-font-weight:bold;
+    display:inline-block;
+    background:#3b82f6;
+    color:#ffffff;
+    text-decoration:none;
+    padding:14px 28px;
+    border-radius:8px;
+    font-weight:bold;
+    transition:0.3s;
 }
 
+.btn:hover{
+    background:#2563eb;
+}
+
+/* Tools */
+
 .tools{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-padding:40px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    padding:40px;
 }
 
 .card{
-background:#161b22;
-padding:20px;
-border-radius:12px;
-text-align:center;
+    background:#161b22;
+    border:1px solid #30363d;
+    border-radius:12px;
+    padding:25px;
+    text-align:center;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:#3b82f6;
 }
 
 .card h3{
-margin-bottom:10px;
-color:#3b82f6;
+    color:#3b82f6;
+    margin-bottom:12px;
 }
 
+.card p{
+    color:#c9d1d9;
+}
+
+/* Footer */
+
 footer{
-text-align:center;
-padding:20px;
-background:#161b22;
-margin-top:40px;
-color:#aaa;
+    background:#161b22;
+    text-align:center;
+    padding:20px;
+    margin-top:40px;
+    border-top:1px solid #30363d;
+    color:#8b949e;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+header{
+    flex-direction:column;
+    gap:15px;
+    padding:20px;
+}
+
+nav a{
+    margin:0 10px;
+}
+
+.hero h1{
+    font-size:32px;
+}
+
+.hero p{
+    font-size:16px;
+}
+
 }
