@@ -382,6 +382,34 @@ async function createPDF() {
 
 }
 
+const pdfBlob = pdf.output("blob");
+
+const pdfURL = URL.createObjectURL(pdfBlob);
+
+downloadBtn.href = pdfURL;
+
+downloadBtn.style.display = "inline-block";
+
+result.innerHTML = "✅ PDF created successfully! Click Download PDF.";
+
+}
+
+function resetPDFTool() {
+
+imageInput.value = "";
+
+previewContainer.innerHTML = "";
+
+selectedImages = [];
+
+downloadBtn.style.display = "none";
+
+downloadBtn.removeAttribute("href");
+
+result.innerHTML = "";
+
+}
+
 </script>
 
 if (selectedImages.length === 0) {
