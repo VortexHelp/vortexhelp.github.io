@@ -116,3 +116,111 @@ if (searchInput) {
     });
 
 }
+/* ===========================
+   Image Compressor
+=========================== */
+
+const imageInput = document.getElementById("imageInput");
+const previewImage = document.getElementById("previewImage");
+const qualitySlider = document.getElementById("quality");
+const qualityValue = document.getElementById("qualityValue");
+const downloadBtn = document.getElementById("downloadBtn");
+const result = document.getElementById("result");
+
+let selectedImage = null;
+
+// Show Preview
+
+if (imageInput) {
+
+    imageInput.addEventListener("change", function () {
+
+        const file = this.files[0];
+
+        if (!file) return;
+
+        selectedImage = file;
+
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+
+            previewImage.src = e.target.result;
+            previewImage.style.display = "block";
+
+        };
+
+        reader.readAsDataURL(file);
+
+    });
+
+}
+
+// Quality Slider
+
+if (qualitySlider) {
+
+    qualitySlider.addEventListener("input", function () {
+
+        qualityValue.innerHTML = this.value + "%";
+
+    });
+
+}
+
+// Compress Image
+
+function compressImage() {
+
+    if (!selectedImage) {
+
+        alert("Please select an image.");
+
+        return;
+
+    }
+
+    const quality = qualitySlider.value / 100;
+
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+
+        const img = new Image();
+
+        img.onload = function () {
+
+            const canvas = document.createElement("canvas");
+
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            const ctx = canvas.getContext("2d");
+
+            ctx.drawImage(img, 0, 0);
+
+            canvas.toBlob(function (blob) {
+
+                const url = URL.createObjectURL(blob);
+
+                downloadBtn.href = url;
+                downloadBtn.style.display = "inline-block";
+
+                const originalSize = (selectedImage.size / 1024).toFixed(2);
+                const compressedSize = (blob.size / 1024).toFixed(2);
+
+                result.innerHTML =
+                    "Original Size: <b>" + originalSize + " KB</b><br>" +
+                    "Compressed Size: <b>" + compressedSize + " KB</b>";
+
+            }, "image/jpeg", quality);
+
+        };
+
+        img.src = event.target.result;
+
+    };
+
+    reader.readAsDataURL(selectedImage);
+
+}
