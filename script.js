@@ -50,14 +50,14 @@ function searchTool() {
 
 
     if (
-        input.includes("bmi")
-    ) {
+    input.includes("bmi")
+) {
 
-        alert("BMI Calculator is coming soon!");
+    window.location.href = "tools/bmi-calculator.html";
 
-        return;
+    return;
 
-    }
+}
 
 
     if (
