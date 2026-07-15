@@ -1,1 +1,167 @@
-.
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Image Compressor - VortexHelp</title>
+
+<link rel="stylesheet" href="../style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<a href="../index.html">
+
+<img src="../logo.png" alt="VortexHelp Logo">
+
+<span>VortexHelp</span>
+
+</a>
+
+</div>
+
+<div class="menu-toggle" id="menuToggle">
+☰
+</div>
+
+<nav id="navbar">
+
+<a href="../index.html">Home</a>
+
+<a href="image-tools.html">Image Tools</a>
+
+<a href="../index.html#tools">All Tools</a>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>Image Compressor</h1>
+
+<p>
+
+Compress JPG, PNG and WEBP images online for free.
+
+</p>
+
+<div class="calculator-box">
+
+<label>Select Image</label>
+
+<input
+type="file"
+id="imageInput"
+accept="image/*">
+
+<br><br>
+
+<img
+id="previewImage"
+style="max-width:100%;display:none;border-radius:12px;">
+
+<br><br>
+
+<label>
+
+Compression Quality
+
+<span id="qualityValue">
+
+80%
+
+</span>
+
+</label>
+
+<input
+
+type="range"
+
+id="quality"
+
+min="10"
+
+max="100"
+
+value="80">
+
+<br><br>
+
+<button
+
+class="btn"
+
+onclick="compressImage()">
+
+Compress Image
+
+</button>
+
+<a
+
+id="downloadBtn"
+
+class="tool-btn"
+
+style="display:none;"
+
+download="compressed-image.jpg">
+
+Download Image
+
+</a>
+
+<p id="result"></p>
+
+</div>
+
+</section>
+
+<footer>
+
+<div>
+
+<h3>VortexHelp</h3>
+
+<p>
+
+Free online tools for everyone.
+
+</p>
+
+</div>
+
+<div>
+
+<a href="#">Privacy Policy</a>
+
+<a href="#">Terms &amp; Conditions</a>
+
+<a href="#">Contact</a>
+
+</div>
+
+<p>
+
+© 2026 VortexHelp. All Rights Reserved.
+
+</p>
+
+</footer>
+
+<script src="../script.js"></script>
+
+</body>
+
+</html>
