@@ -623,3 +623,69 @@ footer{
 }
 
 }
+/* ===========================
+   Word Counter
+=========================== */
+
+#textInput{
+    width:100%;
+    padding:16px;
+    background:#1f2937;
+    color:#ffffff;
+    border:1px solid #374151;
+    border-radius:12px;
+    outline:none;
+    font-size:16px;
+    resize:vertical;
+    min-height:200px;
+    margin-bottom:20px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+#textInput:focus{
+    border-color:#00c6ff;
+}
+
+.wc-stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:15px;
+    margin-top:25px;
+}
+
+.wc-box{
+    background:#1f2937;
+    border:1px solid #263244;
+    border-radius:14px;
+    text-align:center;
+    padding:20px 10px;
+    transition:.3s;
+}
+
+.wc-box:hover{
+    border-color:#00c6ff;
+    transform:translateY(-4px);
+}
+
+.wc-box h2{
+    color:#00c6ff;
+    font-size:26px;
+    margin-bottom:6px;
+}
+
+.wc-box p{
+    color:#b8c1d1;
+    font-size:13px;
+}
+
+@media(max-width:768px){
+
+    .wc-stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    #textInput{
+        min-height:150px;
+    }
+
+}
