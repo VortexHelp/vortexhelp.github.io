@@ -2,6 +2,8 @@
    VortexHelp - Main Script
 =========================== */
 
+(function () {
+
 // Mobile Menu
 
 const menuToggle = document.getElementById("menuToggle");
@@ -75,7 +77,7 @@ function searchTool() {
         input.includes("pdf")
     ) {
 
-        alert("PDF Tools are coming soon!");
+        window.location.href = "tools/pdf-tools.html";
 
         return;
 
@@ -86,7 +88,7 @@ function searchTool() {
         input.includes("image")
     ) {
 
-        alert("Image Tools are coming soon!");
+        window.location.href = "tools/image-tools.html";
 
         return;
 
@@ -96,6 +98,9 @@ function searchTool() {
     alert("Tool not found.");
 
 }
+
+// Make searchTool available to inline onclick="searchTool()" in index.html
+window.searchTool = searchTool;
 
 
 
@@ -116,6 +121,8 @@ if (searchInput) {
     });
 
 }
+
+
 /* ===========================
    Image Compressor
 =========================== */
@@ -131,7 +138,7 @@ let selectedImage = null;
 
 // Show Preview
 
-if (imageInput) {
+if (imageInput && previewImage) {
 
     imageInput.addEventListener("change", function () {
 
@@ -145,12 +152,12 @@ if (imageInput) {
 
         reader.onload = function (e) {
 
-    if(previewImage){
-        previewImage.src = e.target.result;
-        previewImage.style.display = "block";
-    }
+            if (previewImage) {
+                previewImage.src = e.target.result;
+                previewImage.style.display = "block";
+            }
 
-};
+        };
 
         reader.readAsDataURL(file);
 
@@ -160,7 +167,7 @@ if (imageInput) {
 
 // Quality Slider
 
-if (qualitySlider) {
+if (qualitySlider && qualityValue) {
 
     qualitySlider.addEventListener("input", function () {
 
@@ -226,6 +233,11 @@ function compressImage() {
     reader.readAsDataURL(selectedImage);
 
 }
+
+// Make compressImage available to inline onclick="compressImage()"
+window.compressImage = compressImage;
+
+
 /* ===========================
    Image Compressor - Premium Features
 =========================== */
@@ -234,29 +246,29 @@ function compressImage() {
 
 function resetCompressor() {
 
-    if(imageInput){
+    if (imageInput) {
         imageInput.value = "";
     }
 
-    if(previewImage){
+    if (previewImage) {
         previewImage.src = "";
         previewImage.style.display = "none";
     }
 
-    if(downloadBtn){
+    if (downloadBtn) {
         downloadBtn.style.display = "none";
         downloadBtn.removeAttribute("href");
     }
 
-    if(result){
+    if (result) {
         result.innerHTML = "";
     }
 
-    if(qualitySlider){
+    if (qualitySlider) {
         qualitySlider.value = 80;
     }
 
-    if(qualityValue){
+    if (qualityValue) {
         qualityValue.innerHTML = "80%";
     }
 
@@ -264,76 +276,79 @@ function resetCompressor() {
 
 }
 
+// Make resetCompressor available to inline onclick="resetCompressor()"
+window.resetCompressor = resetCompressor;
+
 
 // Allow only Images
 
-if(imageInput){
+if (imageInput) {
 
-imageInput.addEventListener("change",function(){
+    imageInput.addEventListener("change", function () {
 
-const file=this.files[0];
+        const file = this.files[0];
 
-if(!file) return;
+        if (!file) return;
 
-if(!file.type.startsWith("image/")){
+        if (!file.type.startsWith("image/")) {
 
-alert("Please select a valid image.");
+            alert("Please select a valid image.");
 
-resetCompressor();
+            resetCompressor();
 
-return;
+            return;
 
-}
+        }
 
-});
+    });
 
 }
 
 
 // Drag & Drop Support
 
-const calculatorBox=document.querySelector(".calculator-box");
+const calculatorBox = document.querySelector(".calculator-box");
 
-if(calculatorBox){
+if (calculatorBox && imageInput) {
 
-calculatorBox.addEventListener("dragover",function(e){
+    calculatorBox.addEventListener("dragover", function (e) {
 
-e.preventDefault();
+        e.preventDefault();
 
-calculatorBox.style.borderColor="#00c6ff";
+        calculatorBox.style.borderColor = "#00c6ff";
 
-});
+    });
 
-calculatorBox.addEventListener("dragleave",function(){
+    calculatorBox.addEventListener("dragleave", function () {
 
-calculatorBox.style.borderColor="#263244";
+        calculatorBox.style.borderColor = "#263244";
 
-});
+    });
 
-calculatorBox.addEventListener("drop",function(e){
+    calculatorBox.addEventListener("drop", function (e) {
 
-e.preventDefault();
+        e.preventDefault();
 
-calculatorBox.style.borderColor="#263244";
+        calculatorBox.style.borderColor = "#263244";
 
-const file=e.dataTransfer.files[0];
+        const file = e.dataTransfer.files[0];
 
-if(!file) return;
+        if (!file) return;
 
-if(!file.type.startsWith("image/")){
+        if (!file.type.startsWith("image/")) {
 
-alert("Please drop an image file.");
+            alert("Please drop an image file.");
 
-return;
+            return;
 
-}
+        }
 
-imageInput.files=e.dataTransfer.files;
+        imageInput.files = e.dataTransfer.files;
 
-if(imageInput){
-    imageInput.dispatchEvent(new Event("change"));
-}
+        imageInput.dispatchEvent(new Event("change"));
 
-});
+    });
 
 }
+
+})();
