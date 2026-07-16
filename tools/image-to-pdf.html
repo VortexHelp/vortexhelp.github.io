@@ -245,15 +245,15 @@ pdf.addImage(imageData, format, x, y, width, height);
 
 }
 
-const pdfBlob = pdf.output("blob");
+const format = file.type.includes("png") ? "PNG" : "JPEG";
 
-const pdfURL = URL.createObjectURL(pdfBlob);
+pdf.addImage(imageData, format, x, y, width, height);
 
-downloadBtn.href = pdfURL;
+}
 
-downloadBtn.style.display = "inline-block";
+pdf.save("VortexHelp-Image-to-PDF.pdf");
 
-result.innerHTML = "✅ PDF created successfully! Click the Download PDF button.";
+result.innerHTML = "✅ PDF created and downloaded successfully.";
 
 }
 
