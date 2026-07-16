@@ -2,9 +2,7 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Image to PDF - VortexHelp</title>
@@ -20,15 +18,10 @@
 <header>
 
 <div class="logo">
-
 <a href="../index.html">
-
 <img src="../logo.png" alt="VortexHelp Logo">
-
 <span>VortexHelp</span>
-
 </a>
-
 </div>
 
 <div class="menu-toggle" id="menuToggle">
@@ -36,13 +29,9 @@
 </div>
 
 <nav id="navbar">
-
 <a href="../index.html">Home</a>
-
 <a href="pdf-tools.html">PDF Tools</a>
-
 <a href="../index.html#tools">All Tools</a>
-
 </nav>
 
 </header>
@@ -52,7 +41,7 @@
 <h1>Image to PDF</h1>
 
 <p>
-Convert JPG, PNG and WEBP images into PDF documents for free.
+Convert JPG, PNG and WEBP images into PDF documents instantly.
 </p>
 
 <div class="calculator-box">
@@ -75,21 +64,11 @@ multiple>
 Create PDF
 </button>
 
-<button class="tool-btn" onclick="resetPDFTool()">
+<button class="tool-btn" id="resetBtn">
 Reset
 </button>
 
 <br><br>
-
-<a
-id="downloadBtn"
-class="tool-btn"
-style="display:none;"
-download="VortexHelp-Image-to-PDF.pdf">
-
-Download PDF
-
-</a>
 
 <p id="result"></p>
 
@@ -100,32 +79,17 @@ Download PDF
 <footer>
 
 <div>
-
 <h3>VortexHelp</h3>
-
-<p>
-
-Free online tools for everyone.
-
-</p>
-
+<p>Free online tools for everyone.</p>
 </div>
 
 <div>
-
 <a href="#">Privacy Policy</a>
-
 <a href="#">Terms & Conditions</a>
-
 <a href="#">Contact</a>
-
 </div>
 
-<p>
-
-© 2026 VortexHelp. All Rights Reserved.
-
-</p>
+<p>© 2026 VortexHelp. All Rights Reserved.</p>
 
 </footer>
 
@@ -135,31 +99,30 @@ Free online tools for everyone.
 
 const imageInput = document.getElementById("imageInput");
 const previewContainer = document.getElementById("previewContainer");
-const downloadBtn = document.getElementById("downloadBtn");
 const result = document.getElementById("result");
+const createPdfBtn = document.getElementById("createPdfBtn");
+const resetBtn = document.getElementById("resetBtn");
 
 let selectedFiles = [];
 
-imageInput.addEventListener("change", function () {
+imageInput.addEventListener("change", function(){
 
 selectedFiles = Array.from(this.files);
 
 previewContainer.innerHTML = "";
 
-downloadBtn.style.display = "none";
-
 result.innerHTML = "";
 
-selectedFiles.forEach(file => {
+selectedFiles.forEach(file=>{
 
-const img = document.createElement("img");
+const img=document.createElement("img");
 
-img.src = URL.createObjectURL(file);
+img.src=URL.createObjectURL(file);
 
-img.style.width = "120px";
-img.style.margin = "8px";
-img.style.borderRadius = "10px";
-img.style.border = "2px solid #334155";
+img.style.width="120px";
+img.style.margin="8px";
+img.style.borderRadius="10px";
+img.style.border="2px solid #334155";
 
 previewContainer.appendChild(img);
 
@@ -167,13 +130,15 @@ previewContainer.appendChild(img);
 
 });
 
-async function createPDF() {
+createPdfBtn.addEventListener("click",createPDF);
 
-alert("Create PDF button clicked");
+resetBtn.addEventListener("click",resetPDFTool);
 
-if (selectedFiles.length === 0) {
+async function createPDF(){
 
-result.innerHTML = "❌ Please select at least one image.";
+if(selectedFiles.length===0){
+
+result.innerHTML="❌ Please select at least one image.";
 
 return;
 
@@ -181,96 +146,4 @@ return;
 
 const { jsPDF } = window.jspdf;
 
-const pdf = new jsPDF("p", "mm", "a4");
-
-for (let i = 0; i < selectedFiles.length; i++) {
-
-const file = selectedFiles[i];
-
-const imageData = await new Promise((resolve) => {
-
-const reader = new FileReader();
-
-reader.onload = function (e) {
-
-resolve(e.target.result);
-
-};
-
-reader.readAsDataURL(file);
-
-});
-
-const img = new Image();
-
-img.src = imageData;
-
-await new Promise((resolve) => {
-
-img.onload = resolve;
-
-});
-
-const pageWidth = 210;
-
-const pageHeight = 297;
-
-const margin = 10;
-
-const maxWidth = pageWidth - (margin * 2);
-
-const maxHeight = pageHeight - (margin * 2);
-
-let width = img.width;
-
-let height = img.height;
-
-const scale = Math.min(maxWidth / width, maxHeight / height);
-
-width *= scale;
-
-height *= scale;
-
-const x = (pageWidth - width) / 2;
-
-const y = (pageHeight - height) / 2;
-
-if (i > 0) {
-    pdf.addPage();
-}
-
-const format = file.type.includes("png") ? "PNG" : "JPEG";
-
-pdf.addImage(imageData, format, x, y, width, height);
-
-}
-
-pdf.save("VortexHelp-Image-to-PDF.pdf");
-
-result.innerHTML = "✅ PDF created and downloaded successfully.";
-
-}
-
-function resetPDFTool() {
-
-imageInput.value = "";
-
-selectedFiles = [];
-
-previewContainer.innerHTML = "";
-
-downloadBtn.style.display = "none";
-
-downloadBtn.removeAttribute("href");
-
-result.innerHTML = "";
-
-}
-
-document.getElementById("createPdfBtn").addEventListener("click", createPDF);
-
-</script>
-
-</body>
-
-</html>
+const pdf=new jsPDF("p","mm","a4");
