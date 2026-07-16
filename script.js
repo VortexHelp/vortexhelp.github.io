@@ -330,7 +330,9 @@ return;
 
 imageInput.files=e.dataTransfer.files;
 
-imageInput.dispatchEvent(new Event("change"));
+if(imageInput){
+    imageInput.dispatchEvent(new Event("change"));
+}
 
 });
 
