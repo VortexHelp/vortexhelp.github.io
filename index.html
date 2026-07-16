@@ -1,221 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>VortexHelp - Free Online Tools</title>
-
+<title>VortexHelp - Free Online Tools for PDF, Images, Calculators & More</title>
+<meta name="description" content="VortexHelp offers free online tools for PDF, Images, Text, Calculators, Converters and more. Fast, secure and no signup required.">
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
 <header>
 
-<div class="logo">
+    <div class="logo">
+        <a href="index.html">
+            <img src="logo.png" alt="VortexHelp Logo">
+            <span>VortexHelp</span>
+        </a>
+    </div>
 
-<a href="index.html">
+    <div class="menu-toggle" id="menuToggle">☰</div>
 
-<img src="logo.png" alt="VortexHelp Logo">
-
-<span>VortexHelp</span>
-
-</a>
-
-</div>
-
-<div class="menu-toggle" id="menuToggle">
-☰
-</div>
-
-<nav id="navbar">
-
-<a href="index.html">Home</a>
-
-<a href="#tools">Tools</a>
-
-<a href="#">Image Tools</a>
-
-<a href="#">PDF Tools</a>
-
-<a href="#">Text Tools</a>
-
-<a href="#">Calculators</a>
-
-<a href="#">About</a>
-
-<a href="#">Contact</a>
-
-</nav>
+    <nav id="navbar">
+        <a href="index.html">Home</a>
+        <a href="#tools">Tools</a>
+        <a href="tools/image-tools.html">Image Tools</a>
+        <a href="tools/pdf-tools.html">PDF Tools</a>
+        <a href="#">Text Tools</a>
+        <a href="tools/calculators.html">Calculators</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
 
 </header>
 
-
 <section class="hero">
 
-<h1>Fast, Free & Secure Online Tools</h1>
+    <h1>Fast, Free & Secure Online Tools</h1>
 
-<p>
+    <p>
+        Powerful online tools for PDF, Images, Text, Calculators, Converters and much more.
+    </p>
 
-Powerful online tools for PDF, Images, Text, Calculators, Converters and much more.
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search a tool...">
+        <button onclick="searchTool()">Search</button>
+    </div>
 
-</p>
-
-<div class="search-box">
-
-<input
-type="text"
-id="searchInput"
-placeholder="Search a tool...">
-
-<button onclick="searchTool()">
-
-Search
-
-</button>
-
-</div>
-
-<a href="#tools" class="btn">
-
-Explore Tools
-
-</a>
+    <a href="#tools" class="btn">Explore Tools</a>
 
 </section>
+
 <section class="tools" id="tools">
 
-<div class="card">
+    <div class="card">
+        <h3>📄 PDF Tools</h3>
+        <p>Merge, Split, Compress and Convert PDF files easily.</p>
+        <a href="tools/pdf-tools.html" class="tool-btn">Open Tool</a>
+    </div>
 
-<h3>📄 PDF Tools</h3>
+    <div class="card">
+        <h3>🖼 Image Tools</h3>
+        <p>Resize, Compress and Convert Images online.</p>
+        <a href="tools/image-tools.html" class="tool-btn">Open Tool</a>
+    </div>
 
-<p>
-Merge, Split, Compress and Convert PDF files easily.
-</p>
+    <div class="card">
+        <h3>📝 Text Tools</h3>
+        <p>Word Counter, Case Converter and useful text tools.</p>
+        <a href="#" class="tool-btn">Coming Soon</a>
+    </div>
 
-<a href="tools/pdf-tools.html" <a href="tools/pdf-tools.html" class="tool-btn">
-Open Tool
-</a>
+    <div class="card">
+        <h3>🧮 Calculators</h3>
+        <p>Age Calculator, BMI Calculator and many useful calculators.</p>
+        <a href="tools/calculators.html" class="tool-btn">Open Tool</a>
+    </div>
 
-</div>
+    <div class="card">
+        <h3>🔄 Converters</h3>
+        <p>Unit Converter, Currency Converter and file converters.</p>
+        <a href="#" class="tool-btn">Coming Soon</a>
+    </div>
 
-
-<div class="card">
-
-<h3>🖼 Image Tools</h3>
-
-<p>
-Resize, Compress and Convert Images online.
-</p>
-
-<a href="tools/image-tools.html" class="tool-btn">
-Open Tool
-</a>
-
-</div>
-
-
-<div class="card">
-
-<h3>📝 Text Tools</h3>
-
-<p>
-Word Counter, Case Converter and useful text tools.
-</p>
-
-<a href="#" class="tool-btn">
-Open Tool
-</a>
-
-</div>
-
-
-<div class="card">
-
-<h3>🧮 Calculators</h3>
-
-<p>
-Age Calculator, BMI Calculator and many useful calculators.
-</p>
-
-<a href="tools/calculators.html" class="tool-btn">
-Open Tool
-</a>
-
-</div>
-
-
-<div class="card">
-
-<h3>🔄 Converters</h3>
-
-<p>
-Unit Converter, Currency Converter and file converters.
-</p>
-
-<a href="#" class="tool-btn">
-Open Tool
-</a>
-
-</div>
-
-
-<div class="card">
-
-<h3>💻 Developer Tools</h3>
-
-<p>
-JSON Formatter, Base64 Encoder, Decoder and coding utilities.
-</p>
-
-<a href="#" class="tool-btn">
-Open Tool
-</a>
-
-</div>
+    <div class="card">
+        <h3>💻 Developer Tools</h3>
+        <p>JSON Formatter, Base64 Encoder, Decoder and coding utilities.</p>
+        <a href="#" class="tool-btn">Coming Soon</a>
+    </div>
 
 </section>
+
 <footer>
 
-<div>
+    <div>
+        <h3>VortexHelp</h3>
+        <p>Free online tools for everyone.</p>
+    </div>
 
-<h3>VortexHelp</h3>
+    <div>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Contact</a>
+    </div>
 
-<p>
-Free online tools for everyone.
-</p>
-
-</div>
-
-<div>
-
-<a href="#">
-Privacy Policy
-</a>
-
-<a href="#">
-Terms &amp; Conditions
-</a>
-
-<a href="#">
-Contact
-</a>
-
-</div>
-
-<p>
-© 2026 VortexHelp. All Rights Reserved.
-</p>
+    <p>© 2026 VortexHelp. All Rights Reserved.</p>
 
 </footer>
 
 <script src="script.js"></script>
 
 </body>
-
 </html>
