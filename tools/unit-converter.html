@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit Converter - Free Online Tool | VortexHelp</title>
+<meta name="description" content="Convert length, weight and temperature units online for free. Fast and accurate unit converter.">
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <a href="../index.html">
+            <img src="../logo.png" alt="VortexHelp Logo">
+            <span>VortexHelp</span>
+        </a>
+    </div>
+
+    <div class="menu-toggle" id="menuToggle">☰</div>
+
+    <nav id="navbar">
+        <a href="../index.html">Home</a>
+        <a href="converters.html">Converters</a>
+        <a href="../index.html#tools">All Tools</a>
+    </nav>
+</header>
+
+<section class="hero">
+
+    <h1>Unit Converter</h1>
+
+    <p>
+        Convert between length, weight and temperature units instantly.
+    </p>
+
+    <div class="calculator-box">
+
+        <label for="categorySelect">Category</label>
+
+        <select id="categorySelect">
+            <option value="length">Length</option>
+            <option value="weight">Weight</option>
+            <option value="temperature">Temperature</option>
+        </select>
+
+        <br><br>
+
+        <label for="inputValue">Value</label>
+
+        <input type="number" id="inputValue" placeholder="Enter value">
+
+        <label for="fromUnit">From</label>
+
+        <select id="fromUnit"></select>
+
+        <label for="toUnit">To</label>
+
+        <select id="toUnit"></select>
+
+        <br>
+
+        <button class="btn" id="convertBtn">Convert</button>
+        <button class="tool-btn" id="resetBtn">Reset</button>
+
+        <br><br>
+
+        <p id="result"></p>
+
+    </div>
+
+</section>
+
+<footer>
+    <div>
+        <h3>VortexHelp</h3>
+        <p>Free online tools for everyone.</p>
+    </div>
+
+    <div>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <p>© 2026 VortexHelp. All Rights Reserved.</p>
+</footer>
+
+<script src="../script.js"></script>
+
+<script>
+(function () {
+
+    const categorySelect = document.getElementById("categorySelect");
+    const fromUnit = document.getElementById("fromUnit");
+    const toUnit = document.getElementById("toUnit");
+    const inputValue = document.getElementById("inputValue");
+    const convertBtn = document.getElementById("convertBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const result = document.getElementById("result");
+
+    // Base unit conversion factors (relative to base unit of each category)
+    const units = {
+
+        length: {
+            base: "meter",
+            options: {
+                "Meter": 1,
+                "Kilometer": 1000,
+                "Centimeter": 0.01,
+                "Millimeter": 0.001,
+                "Mile": 1609.34,
+                "Yard": 0.9144,
+                "Foot": 0.3048,
+                "Inch": 0.0254
+            }
+        },
+
+        weight: {
+            base: "kilogram",
+            options: {
+                "Kilogram": 1,
+                "Gram": 0.001,
+                "Milligram": 0.000001,
+                "Pound": 0.453592,
+                "Ounce": 0.0283495,
+                "Ton": 1000
+            }
+        },
+
+        temperature: {
+            base: "celsius",
+            options: {
+                "Celsius": "C",
+                "Fahrenheit": "F",
+                "Kelvin": "K"
+            }
+        }
+
+    };
+
+    function populateUnits() {
+
+        const category = categorySelect.value;
+        const options = units[category].options;
+
+        fromUnit.innerHTML = "";
+        toUnit.innerHTML = "";
+
+        Object.keys(options).forEach(unitName => {
+
+            const opt1 = document.createElement("option");
+            opt1.value = unitName;
+            opt1.textContent = unitName;
+            fromUnit.appendChild(opt1);
+
+            const opt2 = document.createElement("option");
+            opt2.value = unitName;
+            opt2.textContent = unitName;
+            toUnit.appendChild(opt2);
+
+        });
+
+        // Set sensible defaults
+        if (toUnit.options.length > 1) {
+            toUnit.selectedIndex = 1;
+        }
+
+        result.innerHTML = "";
+        inputValue.value = "";
+
+    }
+
+    function convertTemperature(value, from, to) {
+
+        let celsius;
+
+        if (from === "Celsius") celsius = value;
+        if (from === "Fahrenheit") celsius = (value - 32) * (5 / 9);
+        if (from === "Kelvin") celsius = value - 273.15;
+
+        if (to === "Celsius") return celsius;
+        if (to === "Fahrenheit") return (celsius * 9 / 5) + 32;
+        if (to === "Kelvin") return celsius + 273.15;
+
+    }
+
+    function convert() {
+
+        const category = categorySelect.value;
+        const value = parseFloat(inputValue.value);
+
+        if (isNaN(value)) {
+            result.innerHTML = "❌ Please enter a valid number.";
+            return;
+        }
+
+        const from = fromUnit.value;
+        const to = toUnit.value;
+
+        let finalValue;
+
+        if (category === "temperature") {
+
+            finalValue = convertTemperature(value, from, to);
+
+        } else {
+
+            const options = units[category].options;
+            const baseValue = value * options[from];
+            finalValue = baseValue / options[to];
+
+        }
+
+        result.innerHTML =
+            value + " " + from + " = <b>" +
+            parseFloat(finalValue.toFixed(4)) + " " + to + "</b>";
+
+    }
+
+    function resetTool() {
+        inputValue.value = "";
+        result.innerHTML = "";
+    }
+
+    categorySelect.addEventListener("change", populateUnits);
+    convertBtn.addEventListener("click", convert);
+    resetBtn.addEventListener("click", resetTool);
+
+    populateUnits();
+
+})();
+</script>
+
+</body>
+</html>
