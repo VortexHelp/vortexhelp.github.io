@@ -136,86 +136,84 @@ resetBtn.addEventListener("click",resetPDFTool);
 
 async function createPDF(){
 
-if(selectedFiles.length===0){
-
-result.innerHTML="❌ Please select at least one image.";
-
-return;
-
-}
-
-const { jsPDF } = window.jspdf;
-
-const pdf=new jsPDF("p","mm","a4");
-
-for (let i = 0; i < selectedFiles.length; i++) {
-
-    const file = selectedFiles[i];
-
-    const imageData = await new Promise((resolve) => {
-
-        const reader = new FileReader();
-
-        reader.onload = function (e) {
-            resolve(e.target.result);
-        };
-
-        reader.readAsDataURL(file);
-
-    });
-
-    const img = new Image();
-
-    img.src = imageData;
-
-    await new Promise((resolve) => {
-        img.onload = resolve;
-    });
-
-    const pageWidth = 210;
-    const pageHeight = 297;
-    const margin = 10;
-
-    const maxWidth = pageWidth - (margin * 2);
-    const maxHeight = pageHeight - (margin * 2);
-
-    let width = img.width;
-    let height = img.height;
-
-    const scale = Math.min(
-        maxWidth / width,
-        maxHeight / height
-    );
-
-    width *= scale;
-    height *= scale;
-
-    const x = (pageWidth - width) / 2;
-    const y = (pageHeight - height) / 2;
-
-    if (i > 0) {
-        pdf.addPage();
+    if(selectedFiles.length === 0){
+        result.innerHTML = "❌ Please select at least one image.";
+        return;
     }
 
-    const format =
-        file.type === "image/png"
-            ? "PNG"
-            : "JPEG";
+    createPdfBtn.disabled = true;
+    result.innerHTML = "⏳ Creating PDF...";
 
-    pdf.addImage(
-        imageData,
-        format,
-        x,
-        y,
-        width,
-        height
-    );
+    try {
 
-}
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF("p", "mm", "a4");
 
-pdf.save("VortexHelp-Image-to-PDF.pdf");
+        for (let i = 0; i < selectedFiles.length; i++) {
 
-result.innerHTML = "✅ PDF created successfully.";
+            const file = selectedFiles[i];
+
+            const imageData = await new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => resolve(e.target.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+
+            const img = new Image();
+            img.src = imageData;
+
+            await new Promise((resolve, reject) => {
+                img.onload = resolve;
+                img.onerror = reject;
+            });
+
+            // Convert every image to JPEG using canvas (fixes WEBP/PNG issues)
+            const canvas = document.createElement("canvas");
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            const ctx = canvas.getContext("2d");
+            ctx.fillStyle = "#FFFFFF";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0);
+
+            const jpegData = canvas.toDataURL("image/jpeg", 0.92);
+
+            const pageWidth = 210;
+            const pageHeight = 297;
+            const margin = 10;
+
+            const maxWidth = pageWidth - (margin * 2);
+            const maxHeight = pageHeight - (margin * 2);
+
+            let width = img.width;
+            let height = img.height;
+
+            const scale = Math.min(maxWidth / width, maxHeight / height);
+
+            width *= scale;
+            height *= scale;
+
+            const x = (pageWidth - width) / 2;
+            const y = (pageHeight - height) / 2;
+
+            if (i > 0) {
+                pdf.addPage();
+            }
+
+            pdf.addImage(jpegData, "JPEG", x, y, width, height);
+        }
+
+        pdf.save("VortexHelp-Image-to-PDF.pdf");
+        result.innerHTML = "✅ PDF created successfully.";
+
+    } catch (error) {
+        result.innerHTML = "❌ Error: " + error.message;
+        console.error(error);
+    } finally {
+        createPdfBtn.disabled = false;
+    }
 
 }
 
